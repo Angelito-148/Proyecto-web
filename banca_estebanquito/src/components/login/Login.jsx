@@ -1,7 +1,7 @@
 import React from 'react'
 import "./Login.css"
-import {loginIcon} from "../../assets/icons/login.svg"
-import {loginVideo} from '../../assets/videos/login.mp4';
+import loginIcon from "../../assets/icons/login.svg"
+import loginVideo from '../../assets/videos/login.mp4';
 import { useState } from 'react';
 import { Link } from 'react-router';
 import { useNavigate } from 'react-router';
@@ -47,7 +47,7 @@ const validateUser=()=>{
           className='inputLogin'         
           placeholder='Contraseña'/>
           
-          <button id='buttonStyles'
+          <button id='button'
           onClick={validateUser}>Iniciar Sesion</button>        
           
           <p>¿Todavía no formas parte? <Link to="/registro_usuarios">¡Únete ahora!</Link></p>

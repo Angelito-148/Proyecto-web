@@ -1,6 +1,6 @@
 import React from "react";
 import "./RegistroUsuarios.css";
-import {backArrow} from "../../assets/icons/back-arrow.svg";
+import backArrow from "../../assets/icons/back-arrow.svg";
 import { Link } from 'react-router';
 
 function RegistroUsuarios() {
