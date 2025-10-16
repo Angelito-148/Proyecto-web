@@ -1,25 +1,37 @@
 import React from "react";
 import "./RegistroUsuarios.css";
-
+import {backArrow} from "../../assets/icons/back-arrow.svg";
+import { Link } from 'react-router';
 
 function RegistroUsuarios() {
   return (
 
 
     <div className="registro-container">
+      
       <div className="registro-box">
-        <h2 className="titulo">Crear Cuenta</h2>
-        <p className="subtitulo">Regístrate para continuar</p>
 
-        <input type="text" placeholder="Nombre de Usuario" />
-        <input type="email" placeholder="Correo Electrónico" />
-        <input type="password" placeholder="Contraseña" />
-        <input type="password" placeholder="Confirmar Contraseña" />
+        
+          <Link to="/"><img className="back-arrow" src={backArrow}/></Link> 
 
-        <button>Registrarse</button>
+          <h2 className="titulo">Crear Cuenta</h2>
 
-        </div>
-     </div>
+          <p className="subtitulo">Completa tus datos para continuar</p>
+
+          <input className="input" type="text" placeholder="Nombre de Usuario" />
+
+          <input className="input" type="email" placeholder="Correo Electrónico" />
+
+          <input className="input" type="password" placeholder="Contraseña" />
+
+          <input className="input" type="password" placeholder="Confirmar Contraseña" />
+
+          <Link to="/"><button className="button">Registrarse</button></Link>
+          
+
+
+      </div>
+    </div>
   )
 }
 

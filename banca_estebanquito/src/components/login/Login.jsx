@@ -1,5 +1,7 @@
 import React from 'react'
 import "./Login.css"
+import {loginIcon} from "../../assets/icons/login.svg"
+import {loginVideo} from '../../assets/videos/login.mp4';
 import { useState } from 'react';
 import { Link } from 'react-router';
 import { useNavigate } from 'react-router';
@@ -28,9 +30,12 @@ const validateUser=()=>{
 
     <div id='fondoLogin'>
        
+       <video id="videoFondo"  src={loginVideo} autoPlay loop muted></video>
+
       <div id='ContenedorLogin'>
 
-          <h1>Login</h1>
+          <img id="loginIcon" src={loginIcon} alt="" />
+          <h1 className='text'>Login</h1>
 
           <input type="text"
           value={campo} 
@@ -45,7 +50,7 @@ const validateUser=()=>{
           <button id='buttonStyles'
           onClick={validateUser}>Iniciar Sesion</button>        
           
-          <Link to="/registro_usuarios">Registrate</Link>
+          <p>¿Todavía no formas parte? <Link to="/registro_usuarios">¡Únete ahora!</Link></p>
           
 
 
