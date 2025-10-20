@@ -1,6 +1,7 @@
 import { BrowserRouter, Route, Routes } from 'react-router'
 import './App.css'
-import AccountManagement from './components/GestionCuentas/AccountManagement';
+import Login from './components/login/Login'
+
 
 
 function App() {
@@ -8,7 +9,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<AccountManagement />} />
+        <Route path="/" element={<Login />} />
       </Routes>
     </BrowserRouter>
   )
