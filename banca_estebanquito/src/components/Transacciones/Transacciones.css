@@ -145,9 +145,4 @@ background: #d4d4d4;
 #HacerTransaccion h2, .TarjetaSimple2 h3 { margin: 0 0 10px 0 }
 .Actividad h3 { margin: 0 0 12px 0 }
 
-/* Responsive: apila en una columna */
-/* @media (max-width: 980px) {
-  #Wrapper { width: 96vw; gap: 20px; }
-  #HacerTransaccion, #PanelDerecho { width: 100%; }
-} */
 
