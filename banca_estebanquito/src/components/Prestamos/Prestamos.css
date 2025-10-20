@@ -1,0 +1,154 @@
+#ContenedorPrestamos {
+  width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 28px;
+  background-color: #f5e1c8;
+  padding: 56px 180px 40px;
+  box-sizing: border-box;
+}
+
+#Wrapper {
+  width: min(1120px, 94vw);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 28px;
+}
+
+#SubContenedorPrestamos {
+  width: 100%;
+  min-height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f5e1c8;
+}
+
+#SimuladorPrestamos {
+  flex: 1;
+  min-height: 360px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  border-radius: 16px;
+  background-color: #ffffff;
+  padding: 20px;
+  box-sizing: border-box;
+  box-shadow: 0 12px 28px rgba(0,0,0,0.10);
+}
+
+#SolicitarPrestamos {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  border-radius: 16px;
+  background-color: #ffffff;
+  padding: 20px;
+  box-sizing: border-box;
+  box-shadow: 0 12px 28px rgba(0,0,0,0.10);
+}
+
+.Panel1 {
+  display: flex;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.PanelIzquierdo {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.PanelDerecho {
+  flex: 1;
+  display: flex;
+}
+
+.PanelDerecho .ListaInputsYLabels {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  border-radius: 12px;
+  padding: 0;
+  overflow: hidden;
+  gap: 0;
+}
+
+.ListaInputsYLabels {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.ListaInputsYLabels input {
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.ListaInputsYLabels label {
+  flex: 1;
+  padding: 12px;
+  background-color: #e9e9e9;
+  font-size: 14px;
+  border-top: 1px solid #ffffff;
+}
+
+.Panel2 {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.FilaInputsYLabels {
+  display: flex;
+  gap: 12px;
+}
+
+.FilaInputsYLabels input {
+  flex: 1;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.FilaInputsYLabels label {
+  flex: 1;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+}
+
+.BtnConfirmar {
+  padding: 12px 24px;
+  background-color: #d2691e;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: 600;
+  margin-top: 10px;
+}
+
+.BtnConfirmar:hover {
+  background-color: #b8571a;
+}
+
+/* Títulos */
+#SubContenedorPrestamos h1 { margin: 0 }
+#SimuladorPrestamos h2  { margin: 0 0 10px 0 }
+#SolicitarPrestamos h2  { margin: 0 0 10px 0 }
+.PanelIzquierdo h5      { margin: -6px 0 10px 0 }
+.PanelIzquierdo h4      { margin: 10px 0 -6px 0 }
+.FilaInputsYLabels h4  { margin: 0 }
