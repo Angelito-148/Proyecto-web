@@ -1,12 +1,18 @@
 import './App.css'
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import AccountManagement from './components/GestionCuentas/AccountManagement';
+import React from 'react';
 
 function App() {
  
 
   return (
-    <div>
+      <Router>
+      <Routes>
+        <Route path="/" element={<AccountManagement />} />
+      </Routes>
+    </Router>
 
-    </div>
   )
 }
 
