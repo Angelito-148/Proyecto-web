@@ -1,5 +1,4 @@
 #fondoLogin{
-    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -57,4 +56,17 @@
 #text{
     color: #454546;   
    
+}
+
+#ContenedorLogin a {
+    text-decoration: none;
+    color: inherit;
+}
+
+#ContenedorLogin button a {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    color: inherit;
+    text-decoration: none;
 }
