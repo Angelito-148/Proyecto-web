@@ -1,11 +1,10 @@
 import React from "react";
 import "./RegistroUsuarios.css";
 import backArrow from "../../assets/icons/back-arrow.svg";
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 
 function RegistroUsuarios() {
   return (
-
 
     <div className="registro-container">
       

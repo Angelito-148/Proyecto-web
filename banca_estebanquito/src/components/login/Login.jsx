@@ -2,29 +2,28 @@ import React from 'react'
 import "./Login.css"
 import loginIcon from "../../assets/icons/login.svg"
 import loginVideo from '../../assets/videos/login.mp4';
-import { useState } from 'react';
-import { Link } from 'react-router';
-import { useNavigate } from 'react-router';
-//props es un objeto que contiene todas las propiedades que se le pasan al componente desde su componente padre
+//import { useState } from 'react';
+import { Link } from 'react-router-dom';
+//import { useNavigate } from 'react-router';
 
 
 
 export default function Login() {
-const navigate=useNavigate();
-const [campo,setcampo]=useState("");
+// const navigate=useNavigate();
+// const [campo,setcampo]=useState("");
 
 
-const validateUser=()=>{
-    alert("Hola tu nombre es " + campo);
-    if(campo == "Juan"){
-        navigate("/dashboard",{state:{nombreUsuario:{campo}}});
+// const validateUser=()=>{
+//     alert("Hola tu nombre es " + campo);
+//     if(campo == "Juan"){
+//         navigate("/dashboard",{state:{nombreUsuario:{campo}}});
         
-    }else{
-       alert("Usuario Incorrecto");
-    }
+//     }else{
+//        alert("Usuario Incorrecto");
+//     }
 
     
-}
+// }
 
   return (
 
@@ -38,8 +37,8 @@ const validateUser=()=>{
           <h1 className='text'>Login</h1>
 
           <input type="text"
-          value={campo} 
-          onChange={(e)=>setcampo(e.target.value)} 
+          //value={campo} 
+          //onChange={(e)=>setcampo(e.target.value)} 
           className='inputLogin' 
           placeholder='Nombre Usuario'/>  
 
@@ -47,8 +46,8 @@ const validateUser=()=>{
           className='inputLogin'         
           placeholder='Contraseña'/>
           
-          <button id='button'
-          onClick={validateUser}>Iniciar Sesion</button>        
+          <button id='button'>
+          <Link to="/GestionCuentas">Iniciar Sesion</Link></button>        
           
           <p>¿Todavía no formas parte? <Link to="/registro_usuarios">¡Únete ahora!</Link></p>
           

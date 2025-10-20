@@ -1,15 +1,19 @@
-import { useNavigate } from 'react-router';
+//import { useNavigate } from 'react-router-dom';
+import Navbar from '../Navbar/Navbar';
 import './Prestamos.css';
-import { useState } from 'react';
+//import { useState } from 'react';
 
 function Prestamos() {
-    const navigate = useNavigate();
+    //const navigate = useNavigate();
+    //const navigate = useNavigate();
 
     return(
+        <>
+        <Navbar />
         <div id="ContenedorPrestamos">
             <div id="Wrapper">
                 <div id="SubContenedorPrestamos">
-                    <h1>Préstamos</h1>
+                    <h1>Préstamos</h1>  
                 </div>
 
                 <div id="SimuladorPrestamos">
@@ -58,6 +62,7 @@ function Prestamos() {
                 </div>
             </div>
         </div>
+        </>
     )
 }
 

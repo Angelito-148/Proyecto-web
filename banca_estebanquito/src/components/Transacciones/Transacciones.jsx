@@ -1,12 +1,15 @@
-import { useNavigate } from 'react-router';
+//import { useNavigate } from 'react-router';
 import './Transacciones.css';
 import { useState } from 'react';
+import Navbar from '../Navbar/Navbar';
 
 function Transacciones() {
-  const navigate = useNavigate();
+  //const navigate = useNavigate();
   const [tabActiva, setTabActiva] = useState('transferir');
 
   return (
+    <>
+    <Navbar />
     <div id="ContenedorTransacciones">
         <div id="Wrapper">
             <div id="SubContenedorTransacciones">
@@ -111,6 +114,7 @@ function Transacciones() {
             </div>
         </div>
     </div>
+    </>
   );
 }
 

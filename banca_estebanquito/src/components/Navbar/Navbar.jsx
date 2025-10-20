@@ -3,11 +3,11 @@ import { Link, useNavigate } from 'react-router-dom';
 import './Navbar.css';
 
 function Navbar() {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
-    const handleLogout = () => {
-        navigate('/login');
-    };
+  const handleLogout = () => {
+    navigate('/');
+  };
 
     return (
         <header className='navBar'>
@@ -16,10 +16,10 @@ function Navbar() {
 
       </a>
       <nav className='nav-links'>
-        <Link to="/">Inicio</Link>
-        <Link to="/about">Transacciones</Link>
-        <Link to="/services">Solicitudes de préstamos</Link>
-        <Link to="/contact">Reportes financieros</Link>
+        <Link to="/GestionCuentas">Inicio</Link>
+        <Link to="/Transacciones">Transacciones</Link>
+        <Link to="/Prestamos">Solicitudes de préstamos</Link>
+        <Link to="/reportes_financieros">Reportes financieros</Link>
         <button className='logout-button' onClick={handleLogout}>Cerrar sesión</button>
       </nav>
     </header>

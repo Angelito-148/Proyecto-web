@@ -1,14 +1,17 @@
 import React from 'react'
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 import Withdrawal from '../../assets/icons/Withdrawal.svg';
 import Income from '../../assets/icons/income.svg';
 import Loan from "../../assets/icons/loan.svg";
 import userIcon from '../../assets/icons/user.svg';
 import "./ReportesFinancieros.css"
+import Navbar from '../Navbar/Navbar';
 
 
 export default function ReportesFinancieros() {
   return (
+    <>
+    <Navbar />
     <div id="reportesMainContainer">
         
         <div id='reportesContainer'>
@@ -55,11 +58,10 @@ export default function ReportesFinancieros() {
                 <div className='infoContainer'>
                 
                 </div>
-            
-            <Link to="/"><button id='buttons'>Volver al Inicio</button></Link>
         
 
         </div>
     </div>
+    </>
     )
 }
