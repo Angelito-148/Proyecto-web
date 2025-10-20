@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './AccountManagement.css';
-import Navbar from '../GestionCuentas/Navbar';
+import Navbar from '../Navbar/Navbar';
 
 
 function AccountManagement() {
