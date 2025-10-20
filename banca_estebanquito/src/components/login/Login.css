@@ -1,0 +1,60 @@
+#fondoLogin{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;      
+}
+#videoFondo{
+    position: fixed;  
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    object-fit: cover;
+    z-index: -1;
+    filter: brightness(50%);
+}
+#ContenedorLogin{
+    width: 400px;
+    height: 500px;
+    background-color: #e8c39e;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.inputLogin{
+    width: 80%;
+    height: 30px;
+    margin: 10px ;    
+    border: 1px solid #8c8c8c; 
+    border-radius: 10px;
+    background-color: #f5e1c8;
+    color: #454546;
+}
+
+#button{
+    width: 50%;    
+    height: 30px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background-color: #454546;
+    color: #f5e1c8; 
+}
+
+#loginIcon{
+    width: 50px;
+    margin-bottom: 10px;
+}
+
+#text{
+    color: #454546;   
+   
+}
