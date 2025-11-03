@@ -25,7 +25,7 @@ function AccountManagement() {
   }, []);
 
 
-    
+    const userInfo = JSON.parse(localStorage.getItem("user"))
 
   return (
     <>
@@ -35,8 +35,8 @@ function AccountManagement() {
       <div className="profile">
         <h2>Detalles del perfil</h2>
         <ul>
-          <li><strong>Nombre:</strong> {user.nombre}</li>
-          <li><strong>Email:</strong> {user.email}</li>
+          <li><strong>Nombre:</strong> {userInfo?.nombre}</li>
+          <li><strong>Email:</strong> {userInfo?.email}</li>
           <li><strong>Número de cuenta:</strong> {user.numero_cuenta}</li>
           <li><strong>Tipo de cuenta:</strong> {user.tipo}</li>
         </ul>

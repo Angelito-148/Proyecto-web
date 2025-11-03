@@ -2,17 +2,24 @@ import React from 'react'
 import "./Login.css"
 import loginIcon from "../../assets/icons/login.svg"
 import loginVideo from '../../assets/videos/login.mp4';
-//import { useState } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
-//import { useNavigate } from 'react-router';
+import { useNavigate } from 'react-router';
 
 
 
 export default function Login() {
-// const navigate=useNavigate();
+const navigate=useNavigate();
 // const [campo,setcampo]=useState("");
 
-
+  const validateUser= async()=>{
+    const data  = await getUser();
+    console.log(data);
+   
+    setUser(data);
+    localStorage.setItem('user', JSON.stringify(data[0]));
+    navigate("/GestionCuentas")
+  }
 // const validateUser=()=>{
 //     alert("Hola tu nombre es " + campo);
 //     if(campo == "Juan"){
@@ -24,6 +31,20 @@ export default function Login() {
 
     
 // }
+
+ const [user,setUser] = useState([]);
+ 
+  const getUser = async () => {
+    // Lógica para obtener el usuario
+    const res = await fetch('http://localhost:3000/usuarios',{
+      method: 'GET',      
+    })
+    const data = await res.json();
+    return data;
+    
+   
+  }
+ 
 
   return (
 
@@ -46,8 +67,7 @@ export default function Login() {
           className='inputLogin'         
           placeholder='Contraseña'/>
           
-          <button id='button'>
-          <Link to="/GestionCuentas">Iniciar Sesion</Link></button>        
+          <button id='button' onClick={validateUser}>Iniciar sesion</button>        
           
           <p>¿Todavía no formas parte? <Link to="/registro_usuarios">¡Únete ahora!</Link></p>
           
