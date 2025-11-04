@@ -8,7 +8,6 @@ import { useNavigate } from 'react-router';
 function RegistroUsuarios() {
   const navigate = useNavigate();
 
-  // Estados simples para cada input (fácil de leer y mantener)
   const [nombre, setNombre] = useState("");
   const [email, setEmail] = useState("");
   const [contraseña, setContraseña] = useState("");
@@ -16,10 +15,8 @@ function RegistroUsuarios() {
   const [tipoCuenta, setTipoCuenta] = useState("");
   const [mensaje, setMensaje] = useState("");
 
-  // Llamada al backend tal como ya tienes la ruta: POST /usuarios
   const crearUsuario = async () => {
     setMensaje("");
-    // Validación mínima
     if (!nombre || !email || !contraseña || !numeroCuenta || !tipoCuenta) {
       setMensaje("Completa todos los campos");
       return;
@@ -28,36 +25,32 @@ function RegistroUsuarios() {
     try {
       const res = await fetch("http://localhost:3000/usuarios", {
         method: "POST",
-        headers: {"Content-Type": "application/json"},
         body: JSON.stringify({
           nombre,
           email,
           contraseña,
           numero_cuenta: numeroCuenta,
           tipo_cuenta: tipoCuenta,
-          saldo: 0.00 // saldo no se envía: usa DEFAULT 0.00 en la BD
+          saldo: 0.00 
         })
       });
       
       const data = await res.json();
 
       if (!res.ok) {
-        // mensaje simple para duplicados u otros errores
         setMensaje(data?.error || "No se pudo registrar");
         return;
       }
 
       setMensaje("Usuario registrado correctamente");
-      // Limpia el formulario (opcional)
+
       setNombre(""); setEmail(""); setContraseña("");
       setNumeroCuenta(""); setTipoCuenta("");
 
-      // Redirige al login después de 1 segundo
-      setTimeout(() => navigate("/"), 1000);
+      setTimeout(() => navigate("/"), 2000);
 
     } catch (err) {
-      setMensaje("Error de conexión con el servidor");
-      console.error(err);
+      console.error(err)
     }
   };
   return (

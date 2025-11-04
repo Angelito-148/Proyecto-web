@@ -9,32 +9,43 @@ import { useNavigate } from 'react-router';
 
 
 export default function Login() {
+
   const navigate = useNavigate();
+  const [numero_cuenta, setNumeroCuenta] = useState("");
+  const [contraseña, setContraseña] = useState("");
+
 
   const validateUser = async () => {
-    const data = await getUser();
-    console.log(data);
-    // PENDIENTE REALIZAR LOGICA DE VALIDACION DE USUARIO
-    setUser(data);
-    localStorage.setItem('user', JSON.stringify(data[0]));
-    navigate("/GestionCuentas")
+    try {
+      const data = await getUser();
+      const foundUser = data.find(user => 
+        user.numero_cuenta === numero_cuenta && user.contraseña === contraseña
+      );
+      if (foundUser) {
+        setUser(foundUser);
+        localStorage.setItem('user', JSON.stringify(foundUser));
+        navigate("/GestionCuentas");
+      } else {
+        alert("Usuario o contraseña incorrecta");
+      }
+    } catch (err) {
+      console.error("Error al validar el usuario:", err);
+    }
   }
 
   const [user,setUser] = useState([]);
  
   const getUser = async () => {
-    // Lógica para obtener el usuario
     const res = await fetch('http://localhost:3000/usuarios',{
-      method: 'GET',      
+      method: 'GET', 
     })
     const data = await res.json();
     return data;
   }
  
   return (
-    <div id='fondoLogin'>
-       
-       <video id="videoFondo"  src={loginVideo} autoPlay loop muted></video>
+    <div id='fondoLogin'>  
+      <video id="videoFondo"  src={loginVideo} autoPlay loop muted></video>
 
       <div id='ContenedorLogin'>
 
@@ -42,18 +53,20 @@ export default function Login() {
           <h1 className='text'>Login</h1>
 
           <input type="text"
-          //value={campo} 
-          //onChange={(e)=>setcampo(e.target.value)} 
+          value={numero_cuenta} 
+          onChange={(e)=>setNumeroCuenta(e.target.value)} 
           className='inputLogin' 
-          placeholder='Nombre Usuario'/>  
+          placeholder='Numero de cuenta'/> 
 
-          <input type="password"         
-          className='inputLogin'         
+          <input type="password"
+          value={contraseña}
+          onChange={(e)=>setContraseña(e.target.value)}
+          className='inputLogin'
           placeholder='Contraseña'/>
           
           <button id='button' onClick={validateUser}>Iniciar sesion</button>        
-          
-          <p>¿Todavía no formas parte? <Link to="/registro_usuarios">¡Únete ahora!</Link></p>
+
+          <p>¿Todavía no formas parte? <Link to="/registro_usuarios">¡Registrate ahora!</Link></p>
 
       </div>
     </div>
