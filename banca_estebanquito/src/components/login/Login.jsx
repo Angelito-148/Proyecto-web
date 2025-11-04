@@ -9,30 +9,18 @@ import { useNavigate } from 'react-router';
 
 
 export default function Login() {
-const navigate=useNavigate();
-// const [campo,setcampo]=useState("");
+  const navigate = useNavigate();
 
-  const validateUser= async()=>{
-    const data  = await getUser();
+  const validateUser = async () => {
+    const data = await getUser();
     console.log(data);
-   
+    // PENDIENTE REALIZAR LOGICA DE VALIDACION DE USUARIO
     setUser(data);
     localStorage.setItem('user', JSON.stringify(data[0]));
     navigate("/GestionCuentas")
   }
-// const validateUser=()=>{
-//     alert("Hola tu nombre es " + campo);
-//     if(campo == "Juan"){
-//         navigate("/dashboard",{state:{nombreUsuario:{campo}}});
-        
-//     }else{
-//        alert("Usuario Incorrecto");
-//     }
 
-    
-// }
-
- const [user,setUser] = useState([]);
+  const [user,setUser] = useState([]);
  
   const getUser = async () => {
     // Lógica para obtener el usuario
@@ -41,13 +29,9 @@ const navigate=useNavigate();
     })
     const data = await res.json();
     return data;
-    
-   
   }
  
-
   return (
-
     <div id='fondoLogin'>
        
        <video id="videoFondo"  src={loginVideo} autoPlay loop muted></video>
@@ -70,9 +54,6 @@ const navigate=useNavigate();
           <button id='button' onClick={validateUser}>Iniciar sesion</button>        
           
           <p>¿Todavía no formas parte? <Link to="/registro_usuarios">¡Únete ahora!</Link></p>
-          
-
-
 
       </div>
     </div>
