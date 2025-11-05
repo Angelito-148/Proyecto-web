@@ -11,7 +11,7 @@ import { useNavigate } from 'react-router';
 export default function Login() {
 
   const navigate = useNavigate();
-  const [numero_cuenta, setNumeroCuenta] = useState("");
+  const [id, setId] = useState("");
   const [contraseña, setContraseña] = useState("");
 
 
@@ -19,7 +19,7 @@ export default function Login() {
     try {
       const data = await getUser();
       const foundUser = data.find(user => 
-        user.numero_cuenta === numero_cuenta && user.contraseña === contraseña
+        user.id === id && user.contraseña === contraseña
       );
       if (foundUser) {
         setUser(foundUser);
@@ -53,8 +53,8 @@ export default function Login() {
           <h1 className='text'>Login</h1>
 
           <input type="text"
-          value={numero_cuenta} 
-          onChange={(e)=>setNumeroCuenta(e.target.value)} 
+          value={id} 
+          onChange={(e)=>setId(e.target.value)} 
           className='inputLogin' 
           placeholder='Numero de cuenta'/> 
 

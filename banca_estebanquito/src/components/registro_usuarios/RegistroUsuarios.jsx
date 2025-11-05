@@ -11,13 +11,13 @@ function RegistroUsuarios() {
   const [nombre, setNombre] = useState("");
   const [email, setEmail] = useState("");
   const [contraseña, setContraseña] = useState("");
-  const [numeroCuenta, setNumeroCuenta] = useState("");
+  const [usuario_id, setUsuario_id] = useState("");
   const [tipoCuenta, setTipoCuenta] = useState("");
   const [mensaje, setMensaje] = useState("");
 
   const crearUsuario = async () => {
     setMensaje("");
-    if (!nombre || !email || !contraseña || !numeroCuenta || !tipoCuenta) {
+    if (!usuario_id || !nombre || !email || !contraseña || !tipoCuenta) {
       setMensaje("Completa todos los campos");
       return;
     }
@@ -25,15 +25,17 @@ function RegistroUsuarios() {
     try {
       const res = await fetch("http://localhost:3000/usuarios", {
         method: "POST",
+        headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({
+          id: usuario_id,
           nombre,
           email,
           contraseña,
-          numero_cuenta: numeroCuenta,
           tipo_cuenta: tipoCuenta,
           saldo: 0.00 
         })
       });
+      console.log("respuesta del metodo", res);
       
       const data = await res.json();
 
@@ -45,7 +47,7 @@ function RegistroUsuarios() {
       setMensaje("Usuario registrado correctamente");
 
       setNombre(""); setEmail(""); setContraseña("");
-      setNumeroCuenta(""); setTipoCuenta("");
+      setUsuario_id(""); setTipoCuenta("");
 
       setTimeout(() => navigate("/"), 2000);
 
@@ -94,8 +96,8 @@ function RegistroUsuarios() {
           className="input"
           type="text"
           placeholder="Número de cuenta (puede ser tu celular)"
-          value={numeroCuenta}
-          onChange={(e) => setNumeroCuenta(e.target.value)}
+          value={usuario_id}
+          onChange={(e) => setUsuario_id(e.target.value)}
         />
 
           <select

@@ -19,7 +19,7 @@ function AccountManagement() {
         <ul>
           <li><strong>Nombre:</strong> {userInfo?.nombre}</li>
           <li><strong>Email:</strong> {userInfo?.email}</li>
-          <li><strong>Número de cuenta:</strong> {userInfo?.numero_cuenta}</li>
+          <li><strong>Número de cuenta:</strong> {userInfo?.id}</li>
           <li><strong>Tipo de cuenta:</strong> {userInfo?.tipo_cuenta}</li>
         </ul>
       </div>

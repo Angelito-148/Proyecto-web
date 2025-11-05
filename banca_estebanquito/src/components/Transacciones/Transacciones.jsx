@@ -3,105 +3,75 @@ import './Transacciones.css';
 import { useState, useEffect } from 'react';
 import Navbar from '../Navbar/Navbar';
 
-const hacerDeposito = async (usuarioId, monto) => {
-  const resp = await fetch("http://localhost:3000/transacciones", {
+function Transacciones() {
+  //const navigate = useNavigate();
+  const [tabActiva, setTabActiva] = useState('transferir');
+  const [cuentaDestino, setCuentaDestino] = useState("");
+  const [usuario_id, setUsuario_id] = useState("");
+  const [monto, setMonto] = useState("");
+  const [usuarioActual, setUsuarioActual] = useState(null);
+
+  useEffect(() => {
+    const userStorage = localStorage.getItem('user');
+    if (userStorage) {
+      const userData = JSON.parse(userStorage);
+      setUsuarioActual(userData);
+      setUsuario_id(userData.id);
+      console.log("Usuario_id:", userData.id);
+    }
+  }, []);
+
+  const hacerDeposito = async () => {
+  const resp = await fetch("http://localhost:3000/transacciones/depositar", {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ usuario_id: Number(usuarioId), monto: Number(monto) })
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({ 
+      id: usuario_id, 
+      monto: monto})
   });
   if (!resp.ok) {
     console.log('Error al realizar depósito');
   }
+  alert("Depósito realizado con éxito");
+  setMonto("");
   return resp.json();
 }
 
-const hacerRetiro = async (usuarioId, monto) => {
-  const resp = await fetch("http://localhost:3000/transacciones", {
+const hacerRetiro = async () => {
+  const resp = await fetch("http://localhost:3000/transacciones/retirar", {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ usuario_id: Number(usuarioId), monto: Number(monto) })
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({ 
+      usuario_id: usuario_id, 
+      monto: monto })
   });
   if (!resp.ok) {
-    console.log('Error al realizar retiro');
+    console.log('Error al realizar retiro'); 
   }
+  alert("Retiro realizado con éxito");
+  setMonto("");
   return resp.json();
 }
 
-const hacerTransferencia = async (origenId, destinoId, monto) => {
-  const resp = await fetch("http://localhost:3000/transacciones", {
+const hacerTransferencia = async () => {
+  const resp = await fetch("http://localhost:3000/transacciones/transferir", {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    headers: {'Content-Type': 'application/json'},
     body: JSON.stringify({
-      origen_id: Number(origenId),
-      destino_id: Number(destinoId),
-      monto: Number(monto)
+      cuenta_origen_id: usuario_id,
+      cuenta_destino_id: cuentaDestino,
+      monto: monto
     })
   });
+  console.log("respuesta del metodo", resp);
   if (!resp.ok) {
     console.log('Error al realizar transferencia');
   }
+  alert("Transferencia realizada con éxito");
+  setMonto("");
+  setCuentaDestino("");
   return resp.json();
 }
-
-
-function Transacciones() {
-  //const navigate = useNavigate();
-  const [tabActiva, setTabActiva] = useState('transferir');
-  // const [cuentaOrigen, setCuentaOrigen] = useState("");
-  // const [cuentaDestino, setCuentaDestino] = useState("");
-  // const [tipoCuenta, setTipoCuenta] = useState("");
-  // const [monto, setMonto] = useState("");
-  // const [mensaje, setMensaje] = useState("");
-  // const [usuarioActual, setUsuarioActual] = useState(null);
-  // const fechaActual = new Date().toISOString().split('T')[0];
-
-  // useEffect(() => {
-  //   const userStorage = localStorage.getItem('user');
-  //   if (userStorage) {
-  //     const userData = JSON.parse(userStorage);
-  //     setUsuarioActual(userData);
-  //     setCuentaOrigen(userData.numero_cuenta);
-  //   }
-  // }, []);
-
-  // const crearTransaccion = async () => {
-  //   setMensaje("");
-  //   if (!cuentaOrigen || !cuentaDestino || !tipoCuenta || !monto) {
-  //     setMensaje("Completa todos los campos");
-  //     return;
-  //   }
-
-  //   try {
-  //     const res = await fetch("http://localhost:3000/transacciones", {
-  //       method: "POST",
-  //       body: JSON.stringify({
-  //         cuenta_origen_id: cuentaOrigen,
-  //         cuenta_destino_id: null,
-  //         tipo_cuenta: tipoCuenta,
-  //         tipo: tabActiva,
-  //         monto: parseFloat(monto),
-  //         fecha: fechaActual
-  //       })
-  //     });
-      
-  //     const data = await res.json();
-
-  //     if (!res.ok) {
-  //       setMensaje(data?.error || "No se pudo realizar la transacción");
-  //       return;
-  //     }
-
-  //     setMensaje("Transacción realizada correctamente");
-
-  //     setCuentaDestino("");
-  //     setTipoCuenta("");
-  //     setMonto("");
-
-  //   } catch (err) {
-  //       console.error("Error en createTransaccion:", err.message);
-  //       err.status(500).json({ error: err.message });
-  //   }
-  // };
 
   return (
     <>
@@ -140,31 +110,29 @@ function Transacciones() {
                     <div className="FilaInputs">
                       <input type="text" placeholder="Cuenta de origen" disabled />
                       <input type="text" disabled 
-                      // value={cuentaOrigen}
-                      // onChange={(e) => setCuentaOrigen(e.target.value)}
+                      value={usuario_id}
+                      onChange={(e) => setUsuario_id(e.target.value)}
                       />
                     </div>
                     <div className="FilaInputs">
                       <input type="text" placeholder="Cuenta de destino" disabled />
                       <input type="text" placeholder="000-000000-00" 
-                      // value={cuentaDestino}
-                      // onChange={(e) => setCuentaDestino(e.target.value)}
+                      value={cuentaDestino}
+                      onChange={(e) => setCuentaDestino(e.target.value)}
                       />
                     </div>
                     <div className="FilaInputs">
                       <select
                       name="tipo_cuenta"
                       className="FilaInputs"
-                      // value={tipoCuenta}
-                      // onChange={(e) => setTipoCuenta(e.target.value)}
                       >
                       <option value="" disabled>Tipo de Cuenta</option>
                       <option value="ahorros">ahorros</option>
                       <option value="corriente">corriente</option>
                       </select>
                       <input type="text" placeholder="Monto" 
-                      // value={monto}
-                      // onChange={(e) => setMonto(e.target.value)}
+                      value={monto}
+                      onChange={(e) => setMonto(e.target.value)}
                       />
                     </div>
                     <div className="BotonConfirmar">
@@ -178,22 +146,20 @@ function Transacciones() {
                     <div className="FilaInputs">
                       <input type="text" placeholder="Cuenta de depósito" disabled />
                       <input type="text" disabled 
-                      // value={cuentaOrigen}
-                      // onChange={(e) => setCuentaOrigen(e.target.value)}
+                      value={usuario_id}
+                      onChange={(e) => setUsuario_id(e.target.value)}
                       />
                     </div>
                     <div className="FilaInputs">
                       <input type="text" placeholder="Monto" 
-                      // value={monto}
-                      // onChange={(e) => setMonto(e.target.value)}
+                      value={monto}
+                      onChange={(e) => setMonto(e.target.value)}
                       />
                     </div>
                     <div className="FilaInputs">
                       <select
                       name="tipo_cuenta"
                       className="FilaInputs"
-                      // value={tipoCuenta}
-                      // onChange={(e) => setTipoCuenta(e.target.value)}
                       >
                       <option value="" disabled>Tipo de Cuenta</option>
                       <option value="ahorros">ahorros</option>
@@ -211,22 +177,20 @@ function Transacciones() {
                     <div className="FilaInputs">
                       <input type="text" placeholder="Cuenta de retiro" disabled />
                       <input type="text" disabled 
-                      // value={cuentaOrigen}
-                      // onChange={(e) => setCuentaOrigen(e.target.value)}
+                      value={usuario_id}
+                      onChange={(e) => setUsuario_id(e.target.value)}
                       />
                     </div>
                     <div className="FilaInputs">
                       <input type="text" placeholder="Monto" 
-                      // value={monto}
-                      // onChange={(e) => setMonto(e.target.value)}
+                      value={monto}
+                      onChange={(e) => setMonto(e.target.value)}
                       />
                     </div>
                     <div className="FilaInputs">
                       <select
                       name="tipo_cuenta"
                       className="FilaInputs"
-                      // value={tipoCuenta}
-                      // onChange={(e) => setTipoCuenta(e.target.value)}
                       >
                       <option value="" disabled>Tipo de Cuenta</option>
                       <option value="ahorros">ahorros</option>
