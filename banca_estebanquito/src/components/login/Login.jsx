@@ -3,43 +3,50 @@ import "./Login.css"
 import loginIcon from "../../assets/icons/login.svg"
 import loginVideo from '../../assets/videos/login.mp4';
 import { useState } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
-//import { useNavigate } from 'react-router';
+import { useNavigate } from 'react-router';
 
 
 
 export default function Login() {
-// const navigate=useNavigate();
-// const [campo,setcampo]=useState("");
+
+  const navigate = useNavigate();
+  const [numero_cuenta, setNumeroCuenta] = useState("");
+  const [contraseña, setContraseña] = useState("");
 
 
-// const validateUser=()=>{
-//     alert("Hola tu nombre es " + campo);
-//     if(campo == "Juan"){
-//         navigate("/dashboard",{state:{nombreUsuario:{campo}}});
-        
-//     }else{
-//        alert("Usuario Incorrecto");
-//     }
-
-    
-// }
-
-  const [user,setUser] = useState([]);
-
-  const getUser = () => {
-    // Lógica para obtener el usuario
-    fetch('http://localhost:3000/usuarios')
-    .then((res) => setUser (res.json()))
-    .catch(error => console.error('Error:', error))
-    
+  const validateUser = async () => {
+    try {
+      const data = await getUser();
+      const foundUser = data.find(user => 
+        user.numero_cuenta === numero_cuenta && user.contraseña === contraseña
+      );
+      if (foundUser) {
+        setUser(foundUser);
+        localStorage.setItem('user', JSON.stringify(foundUser));
+        navigate("/GestionCuentas");
+      } else {
+        alert("Usuario o contraseña incorrecta");
+      }
+    } catch (err) {
+      console.error("Error al validar el usuario:", err);
+    }
   }
 
+  const [user,setUser] = useState([]);
+ 
+  const getUser = async () => {
+    const res = await fetch('http://localhost:3000/usuarios',{
+      method: 'GET', 
+    })
+    const data = await res.json();
+    return data;
+  }
+ 
   return (
-
-    <div id='fondoLogin'>
-       
-       <video id="videoFondo"  src={loginVideo} autoPlay loop muted></video>
+    <div id='fondoLogin'>  
+      <video id="videoFondo"  src={loginVideo} autoPlay loop muted></video>
 
       <div id='ContenedorLogin'>
 
@@ -47,21 +54,20 @@ export default function Login() {
           <h1 className='text'>Login</h1>
 
           <input type="text"
-          //value={campo} 
-          //onChange={(e)=>setcampo(e.target.value)} 
+          value={numero_cuenta} 
+          onChange={(e)=>setNumeroCuenta(e.target.value)} 
           className='inputLogin' 
-          placeholder='Nombre Usuario'/>  
+          placeholder='Numero de cuenta'/> 
 
-          <input type="password"         
-          className='inputLogin'         
+          <input type="password"
+          value={contraseña}
+          onChange={(e)=>setContraseña(e.target.value)}
+          className='inputLogin'
           placeholder='Contraseña'/>
-
-          <button id='button' onClick={getUser}>Iniciar sesion</button>
-
-          <p>¿Todavía no formas parte? <Link to="/registro_usuarios">¡Únete ahora!</Link></p>
           
+          <button id='button' onClick={validateUser}>Iniciar sesion</button>        
 
-
+          <p>¿Todavía no formas parte? <Link to="/registro_usuarios">¡Registrate ahora!</Link></p>
 
       </div>
     </div>
