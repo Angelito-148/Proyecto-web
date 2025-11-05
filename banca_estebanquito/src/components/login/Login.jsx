@@ -3,7 +3,6 @@ import "./Login.css"
 import loginIcon from "../../assets/icons/login.svg"
 import loginVideo from '../../assets/videos/login.mp4';
 import { useState } from 'react';
-import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router';
 
