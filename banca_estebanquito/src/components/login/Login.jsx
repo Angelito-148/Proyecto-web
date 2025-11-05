@@ -2,7 +2,7 @@ import React from 'react'
 import "./Login.css"
 import loginIcon from "../../assets/icons/login.svg"
 import loginVideo from '../../assets/videos/login.mp4';
-//import { useState } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 //import { useNavigate } from 'react-router';
 
@@ -25,6 +25,16 @@ export default function Login() {
     
 // }
 
+  const [user,setUser] = useState([]);
+
+  const getUser = () => {
+    // Lógica para obtener el usuario
+    fetch('http://localhost:3000/usuarios')
+    .then((res) => setUser (res.json()))
+    .catch(error => console.error('Error:', error))
+    
+  }
+
   return (
 
     <div id='fondoLogin'>
@@ -45,10 +55,9 @@ export default function Login() {
           <input type="password"         
           className='inputLogin'         
           placeholder='Contraseña'/>
-          
-          <button id='button'>
-          <Link to="/GestionCuentas">Iniciar Sesion</Link></button>        
-          
+
+          <button id='button' onClick={getUser}>Iniciar sesion</button>
+
           <p>¿Todavía no formas parte? <Link to="/registro_usuarios">¡Únete ahora!</Link></p>
           
 
