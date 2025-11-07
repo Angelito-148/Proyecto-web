@@ -81,13 +81,13 @@ function Prestamos() {
                         <div className="PanelDerecho">
                             <div className="ListaInputsYLabels">
                                 <label>Pago mensual
-                                    =${pagoMensual}
+                                    = ${pagoMensual}
                                 </label>
                                 <label>Total interés
-                                    =${totalInteres}
+                                    = ${totalInteres}
                                 </label>
                                 <label>Costo total
-                                    =${costoTotal}
+                                    = ${costoTotal}
                                 </label>
                             </div>
                         </div>
