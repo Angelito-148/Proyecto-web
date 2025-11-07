@@ -4,7 +4,6 @@ import { useState, useEffect } from 'react';
 import Navbar from '../Navbar/Navbar';
 
 function Transacciones() {
-  //const navigate = useNavigate();
   const [tabActiva, setTabActiva] = useState('transferir');
   const [cuentaDestino, setCuentaDestino] = useState("");
   const [usuario_id, setUsuario_id] = useState("");
@@ -17,10 +16,8 @@ function Transacciones() {
       const userData = JSON.parse(userStorage);
       setUsuarioActual(userData);
       setUsuario_id(userData.id);
-      console.log("Usuario_id:", userData.id);
     }
   }, []);
-
   const hacerDeposito = async () => {
   const resp = await fetch("http://localhost:3000/transacciones/depositar", {
     method: 'POST',
@@ -32,9 +29,11 @@ function Transacciones() {
   if (!resp.ok) {
     console.log('Error al realizar depósito');
   }
-  alert("Depósito realizado con éxito");
-  setMonto("");
-  return resp.json();
+  else {
+    alert("Depósito realizado con éxito");
+    setMonto("");
+    return resp.json();
+  }
 }
 
 const hacerRetiro = async () => {
@@ -48,9 +47,11 @@ const hacerRetiro = async () => {
   if (!resp.ok) {
     console.log('Error al realizar retiro'); 
   }
-  alert("Retiro realizado con éxito");
-  setMonto("");
-  return resp.json();
+  else {
+    alert("Retiro realizado con éxito");
+    setMonto("");
+    return resp.json();
+  }
 }
 
 const hacerTransferencia = async () => {
@@ -67,10 +68,12 @@ const hacerTransferencia = async () => {
   if (!resp.ok) {
     console.log('Error al realizar transferencia');
   }
-  alert("Transferencia realizada con éxito");
-  setMonto("");
-  setCuentaDestino("");
-  return resp.json();
+  else {
+    alert("Transferencia realizada con éxito");
+    setMonto("");
+    setCuentaDestino("");
+    return resp.json();
+  }
 }
 
   return (
